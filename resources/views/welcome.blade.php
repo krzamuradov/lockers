@@ -35,14 +35,40 @@
             padding-left: 10px;
             border-top: 2px solid #aaa;
         }
+
+        .btn {
+            padding: 15px;
+            background: green;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+
+            &:hover {
+                background: darkgreen;
+            }
+
+            &:disabled {
+                background: gray;
+                cursor: not-allowed;
+                color: #ccc;
+            }
+        }
+
+        .centered {
+            text-align: center;
+        }
     </style>
 </head>
 
 <body>
-    <h2 style="text-align: center;">Список активных Почтоматов</h2>
+    <div class="centered">
+        <h2 style="font-weight: bold;">Список активных Почтоматов</h2>
+        <button class="btn" id="refreshBtn" onclick="refreshPage()" disabled>Подождите 60 сек</button>
+    </div>
+
     <div>
-
-
         <table>
             <thead>
             </thead>
@@ -92,7 +118,35 @@
         </table>
     </div>
 
+    <script>
+        const button = document.getElementById('refreshBtn');
+        let cooldown = 60;
 
+        function updateButton() {
+            if (cooldown > 0) {
+                button.innerText = `Подождите ${cooldown} сек`;
+                button.disabled = true;
+            } else {
+                button.innerText = 'Обновить страницу';
+                button.disabled = false;
+            }
+        }
+
+        function refreshPage() {
+            location.reload();
+        }
+
+        function startCooldown() {
+            updateButton();
+            const interval = setInterval(() => {
+                cooldown--;
+                updateButton();
+                if (cooldown <= 0) clearInterval(interval);
+            }, 1000);
+        }
+
+        startCooldown();
+    </script>
 </body>
 
 </html>
