@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Список шкафчиков</title>
+    <title>Список активных Почтоматов</title>
     <style>
         table {
             width: 90%;
@@ -31,7 +31,7 @@
         .section-header {
             background-color: #d9eaff;
             font-weight: 700;
-            text-align: left;
+            text-align: center;
             padding-left: 10px;
             border-top: 2px solid #aaa;
         }
@@ -45,9 +45,6 @@
 
         <table>
             <thead>
-                <tr>
-                    <th colspan="6">Данные серверов</th>
-                </tr>
             </thead>
             <tbody>
                 <!-- Секция Uzpost -->
